@@ -1,0 +1,15 @@
+﻿@model IEnumerable<ADweb.Models.ConfiguracionTipos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Configuracion</h2>
+
+<hr />
+
+<ul id="listaConfi">
+    <li><a asp-area="" asp-controller="ConfiguracionTipos" asp-action="Index"><i class="fas fa-cog"></i> Modificar tipos de productos</a></li>
+    <li><a asp-area="" asp-controller="ConfiguracionLocalidades" asp-action="Index"><i class="fas fa-cog"></i> Modificar localidades clientes</a></li>
+    <li><a asp-area="" asp-controller="ConfiguracionAlertaStocks" asp-action="Index"><i class="fas fa-cog"></i> Modificar cantidad minima alerta stock</a></li>
+</ul>

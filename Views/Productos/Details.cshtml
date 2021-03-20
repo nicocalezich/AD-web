@@ -1,0 +1,48 @@
+﻿@model ADweb.Models.Productos
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Productos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Producto)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Producto)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HayStock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HayStock)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PrecioKgUnidad)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PrecioKgUnidad)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CantidadDisponible)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CantidadDisponible)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

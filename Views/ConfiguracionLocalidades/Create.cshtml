@@ -1,0 +1,32 @@
+﻿@model ADweb.Models.ConfiguracionLocalidades
+
+@{
+    ViewData["Title"] = "Agregar localidad";
+}
+
+<h2>Localidades</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Localidades" class="control-label">Localidad</label>
+                <input asp-for="Localidades" placeholder="Ingrese localidad..." class="form-control" />
+                <span asp-validation-for="Localidades" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><i class="fas fa-arrow-left"></i> Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

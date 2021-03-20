@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ADweb.Models.ConfiguracionTipos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Tipos de productos</h2>
+
+<p>
+    <a asp-action="Create"> <i class="fas fa-plus"></i> Agregar nuevo tipo</a>
+</p>
+<table class="tablespace">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipos)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipos)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Editar</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<hr />
+<a asp-action="Opciones"><i class="fas fa-arrow-left"></i> Volver</a>

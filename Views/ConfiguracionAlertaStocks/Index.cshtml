@@ -1,0 +1,36 @@
+﻿@model IEnumerable<ADweb.Models.ConfiguracionAlertaStock>
+
+@{
+    ViewData["Title"] = "Alerta stock";
+}
+
+<h2>Alerta stock</h2>
+
+<h4> Alertar 'bajo stock' cuando la cantidad llegue a:</h4>
+
+<table class="tablespace">
+    <thead>
+        <tr>
+            <th>
+              
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <strong>Valor: </strong>@Html.DisplayFor(modelItem => item.Valor)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Modificar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<hr />
+<a asp-action="Volver"><i class="fas fa-arrow-left"></i> Volver</a>

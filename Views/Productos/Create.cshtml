@@ -1,0 +1,54 @@
+﻿@model ADweb.Models.Productos
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h2>Agregar producto</h2>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Producto" class="control-label">Producto</label>
+                <input asp-for="Producto" placeholder="Ingrese producto..." class="form-control" />           
+                <span asp-validation-for="Producto" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tipo" class="control-label">Tipo</label>
+                
+                <select asp-for="Tipo" class="form-control">
+
+                    @foreach (string item in ViewBag.tipos)
+                    {
+                        <option>@item</option>
+                    }
+                </select>
+                <span asp-validation-for="Tipo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PrecioKgUnidad" class="control-label">Precio por </label> <select asp-for="UnidadUsada"><option>Kg</option><option>Unidad</option></select>
+                <input asp-for="PrecioKgUnidad" placeholder="Ingrese precio..." class="form-control" />
+                <span asp-validation-for="PrecioKgUnidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CantidadDisponible" class="control-label">Cantidad disponible</label>
+                <input asp-for="CantidadDisponible" placeholder="Ingrese cantidad disponible..." class="form-control" />
+                <span asp-validation-for="CantidadDisponible" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Agregar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index"><i class="fas fa-arrow-left"></i> Volver</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

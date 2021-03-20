@@ -1,0 +1,73 @@
+﻿@model IEnumerable<ADweb.Models.Clientes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Mis clientes <i class="fas fa-arrow-right"></i> @ViewBag.opcion</h2>
+
+<form class="opcionesIndex" action="/Productos/Filtro" method="post">
+    <a class="add" asp-action="Create"><i class="fas fa-plus"></i> Nuevo cliente</a>
+
+    <div class="filtro">
+        <select id="filtroOpciones" name="selector">
+
+            <option> Ver todo </option>
+            @foreach (string item in ViewBag.localidades)
+            {
+                <option>@item</option>
+            }
+        </select>
+
+        <button asp-action="Filtro" type="submit"><i class="fas fa-search"></i> Filtrar</button>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Correo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Localidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Correo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Localidad)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i> Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i> Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

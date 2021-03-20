@@ -1,0 +1,83 @@
+﻿@model IEnumerable<ADweb.Models.Pedidos>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Mis pedidos</h2>
+
+
+<form class="opcionesIndex" action="/Productos/Filtro" method="post">
+    <a class="add" asp-action="Create"><i class="fas fa-plus"></i> Nuevo pedido</a>
+    <div class="filtro">
+        <a class="add" asp-action="Pendientes"><i class="fas fa-clipboard"></i> Ver pendientes</a>
+    </div>
+</form>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                <strong>ID pedido</strong>
+            </th>
+            <th>
+                <strong>Cliente</strong>
+            </th>
+            <th>
+                <strong>Fecha</strong>
+            </th>
+            <th>
+                <strong>Pago</strong>
+            </th>
+            <th>
+                <strong>Entregado</strong>
+            </th>
+            <th>
+                <strong>Cobrado</strong>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               #@item.Id
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cliente)
+            </td>
+            <td>
+               @item.Fecha.ToShortDateString()
+            </td>
+            <td>
+                @if (item.EstaPago)
+                {
+                    <i id="HayStock" class="fas fa-check"></i>
+                }
+                else
+                {
+                    <i id="NoHayStock" class="fas fa-times"></i>
+                }
+            </td>
+            <td>
+                @if (item.EstaEntregado)
+                {
+                    <i id="HayStock" class="fas fa-check"></i>
+                }
+                else
+                {
+                    <i id="NoHayStock" class="fas fa-times"></i>
+                }
+            </td>
+            <td>
+                $@Html.DisplayFor(modelItem => item.TotalCobrado)
+            </td>
+            <td>
+                <a asp-action="Productos" asp-route-id="@item.Id"><i class="fas fa-border-all"></i> Productos</a> |
+                <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Editar</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i> Eliminar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

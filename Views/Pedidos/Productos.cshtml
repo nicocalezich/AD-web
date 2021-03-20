@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ADweb.Models.ProductosVendidos>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<h2>Productos vendidos</h2>
+<hr />
+
+<h4>
+</h4>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                ID pedido
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    #@Html.DisplayFor(modelItem => item.IdPedido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cantidad)
+                </td>
+                <td>
+                    <a>
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-action="Index"><i class="fas fa-arrow-left"></i> Volver</a>

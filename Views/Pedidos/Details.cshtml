@@ -1,0 +1,88 @@
+﻿@model ADweb.Models.Pedidos
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h2>Detalles</h2>
+
+<div>
+    <h4>Pedido #@Model.Id</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cliente):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Cliente)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fecha):
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fecha)
+        </dd>
+        <dt>
+            Entregado:
+        </dt>
+        <dd>
+            @if (Model.EstaEntregado)
+            {
+                <i id="HayStock" class="fas fa-check"></i>
+            }
+            else
+            {
+                <i id="NoHayStock" class="fas fa-times"></i>
+            }
+        </dd>
+        <dt>
+            Pago:
+        </dt>
+        <dd>
+            @if (Model.EstaPago)
+            {
+                <i id="HayStock" class="fas fa-check"></i>
+            }
+            else
+            {
+                <i id="NoHayStock" class="fas fa-times"></i>
+            }
+        </dd>
+        <dt>
+            Pedido cerrado:
+        </dt>
+        <dd>
+            @if (Model.PedidoCerrado)
+            {
+                <i id="HayStock" class="fas fa-check"></i>
+            }
+            else
+            {
+                <i id="NoHayStock" class="fas fa-times"></i>
+            }
+        </dd>
+        <dt>
+            Total cobrado:
+        </dt>
+        <dd>
+            $@Html.DisplayFor(model => model.TotalCobrado)
+        </dd>
+        <hr />
+        <dt>
+            Productos vendidos
+        </dt>
+        <dd>
+            @foreach (ProductosVendidos item in ViewBag.productos)
+            {
+                @item.Producto @item.Cantidad <hr />
+            }
+        </dd>
+    </dl>
+</div>
+  
+    <div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>
+
+

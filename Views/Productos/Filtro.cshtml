@@ -1,0 +1,109 @@
+﻿@model IEnumerable<ADweb.Models.Productos>
+
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<body onload="hayProductos()">
+</body>
+
+<h2>Mis productos <i class="fas fa-arrow-right"></i> @ViewBag.opcion</h2>
+
+<form class="opcionesIndex" action="/Productos/Filtro" method="post">
+    <a class="add" asp-action="Create"><i class="fas fa-plus"></i> Agregar</a>
+
+    <div class="filtro">
+        <select id="filtroOpciones" name="selector">
+            <option>Ver todo</option>
+            @foreach (var item in ViewBag.tipos)
+            {
+                <option>@item</option>
+            }
+        </select>
+
+        <button asp-action="Filtro" type="submit"><i class="fas fa-search"></i> Filtrar</button>
+    </div>
+</form>
+<table class="table" id="tablaStock">
+    <thead>
+        <tr>
+            <th>
+                <strong>Producto</strong>
+            </th>
+            <th>
+                <strong>Tipo</strong>
+            </th>
+            <th>
+                <strong>Precio</strong>
+            </th>
+            <th>
+                <strong>Stock</strong>
+            </th>
+            <th>
+                <strong>Cantidad disponible</strong>
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Producto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo)
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.PrecioKgUnidad) /@item.UnidadUsada
+                </td>
+                <td>
+
+                    @if (item.CantidadDisponible >= 5)
+                    {
+                        <i title="Hay stock" id="HayStock" class="fas fa-check"></i>
+                    }
+
+                    else if (item.CantidadDisponible > 0 && item.CantidadDisponible < 5)
+                    {
+                        <i title="Bajo stock" id="AlertaStock" class="fas fa-exclamation-triangle"></i>
+                    }
+
+                    else
+                    {
+                        <i title="No hay stock" id="NoHayStock" class="fas fa-times"></i>
+                    }
+                </td>
+                <td>
+                    @if (item.CantidadDisponible > 0)
+                    {
+                        if (item.UnidadUsada.Equals("Kg"))
+                        {
+                            <div>@Html.DisplayFor(modelItem => item.CantidadDisponible) kg</div>
+                        }
+
+                        else if (item.UnidadUsada.Equals("Unidad") && item.CantidadDisponible > 1)
+                        {
+                            <div>@Html.DisplayFor(modelItem => item.CantidadDisponible) unidades</div>
+                        }
+                        else
+                        {
+                            <div>@Html.DisplayFor(modelItem => item.CantidadDisponible) unidad</div>
+                        }
+                    }
+                    else
+                    {
+                        <em>Sin stock</em>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id"><i class="fas fa-edit"></i> Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id"><i class="fas fa-info-circle"></i> Detalles</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id"><i class="fas fa-trash"></i> Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,56 @@
+﻿@model ADweb.Models.ProductosVendidos
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<body onload="errorMsj()">
+</body>
+
+<h2>Nuevo pedido <i class="fas fa-arrow-right"></i> Productos vendidos</h2>
+
+<h4>Pedido: #@ViewBag.idPedido</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Producto" class="control-label"></label>
+                <select asp-for="Producto" class="form-control" id="productos">
+                    @foreach (var item in ViewBag.MyList)
+                    {
+                        <option>
+                            @item
+                        </option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <input asp-for="Cantidad" type="number" placeholder="Ingrese cantidad" class="form-control" id="cantidad" required />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" onclick="QueVendi()" value="Agregar" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="IndexPedidos">Listo <i class="fas fa-check"></i></a>
+</div>
+
+<script>
+    function QueVendi() {
+        alert("Producto: " + document.getElementById("productos").value + "\n Cantidad: " + document.getElementById("cantidad").value);
+    }
+
+</script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+}
+

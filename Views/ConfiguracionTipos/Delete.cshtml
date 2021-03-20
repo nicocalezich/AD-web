@@ -1,0 +1,27 @@
+﻿@model ADweb.Models.ConfiguracionTipos
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Eliminar</h2>
+
+<h3>Seguro que desea eliminar este tipo?</h3>
+<div>
+
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Tipo:
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipos)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <a asp-action="Index"><i class="fas fa-arrow-left"></i> Volver</a> |
+        <input type="submit" value="Eliminar" class="btn btn-default" />
+    </form>
+</div>
